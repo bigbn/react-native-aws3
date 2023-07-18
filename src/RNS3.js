@@ -29,10 +29,8 @@ const setBodyAsParsedXML = (response) =>
 
 export class RNS3 {
   static getAwsUrl(options) {
-    if(options.awsUrl) {
-      return options.awsUrl;
-    }
-
+    if (options.awsUrl) return options.awsUrl;
+    
     return `s3${options.region ? `-${options.region}` : ''}.amazonaws.com`;
   }
 
@@ -44,8 +42,8 @@ export class RNS3 {
       contentType: file.type
     }
 
-    const url = options.urlAsPath ?
-      `https://${RNS3.getAwsUrl(options)}/${options.bucket}` :
+    const url = options.awsUrl ?
+      `${RNS3.getAwsUrl(options)}/${options.bucket}` :
       `https://${options.bucket}.${RNS3.getAwsUrl(options)}`
     const method = "POST"
     const policy = S3Policy.generate(options)
