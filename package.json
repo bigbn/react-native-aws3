@@ -20,7 +20,8 @@
   "files": [
     "lib",
     "src",
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "jest": {
     "testPathIgnorePatterns": [
