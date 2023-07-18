@@ -57,7 +57,7 @@ describe('RNS3.put', () => {
 
     const requestCreateMock = Request.create.mock
     expect(requestCreateMock.calls.length).toBe(1)
-    expect(requestCreateMock.calls[0][0]).toBe('https://my-s3-bucket.s3.amazonaws.com')
+    expect(requestCreateMock.calls[0][0]).toBe('https://my-s3-bucket.s3-us-east-1.amazonaws.com')
     expect(requestCreateMock.calls[0][1]).toBe('POST')
     expect(requestCreateMock.calls[0][2]).toBe(policy)
 
@@ -95,7 +95,7 @@ describe('RNS3.put', () => {
 
       const requestCreateMock = Request.create.mock
       expect(requestCreateMock.calls.length).toBe(1)
-      expect(requestCreateMock.calls[0][0]).toBe('https://my-s3-bucket.s3.amazonaws.com')
+      expect(requestCreateMock.calls[0][0]).toBe('https://my-s3-bucket.s3-us-east-1.amazonaws.com')
       expect(requestCreateMock.calls[0][1]).toBe('POST')
       expect(requestCreateMock.calls[0][2]).toBe(policy)
 
@@ -119,7 +119,7 @@ describe('RNS3.put', () => {
 
       Request.create.mockReturnValueOnce(mockRequest)
 
-      const result = RNS3.put(file, { ...options, awsUrl: 's3.us-east-2.amazonaws.com' })
+      const result = RNS3.put(file, { ...options, awsUrl: 'http://s3.us-east-2.amazonaws.com', urlAsPath: true })
       expect(result).toBe(mockRequest)
 
       const s3PolicyGenerateMock = S3Policy.generate.mock
@@ -134,7 +134,7 @@ describe('RNS3.put', () => {
 
       const requestCreateMock = Request.create.mock
       expect(requestCreateMock.calls.length).toBe(1)
-      expect(requestCreateMock.calls[0][0]).toBe('https://my-s3-bucket.s3.us-east-2.amazonaws.com')
+      expect(requestCreateMock.calls[0][0]).toBe('http://s3.us-east-2.amazonaws.com/my-s3-bucket')
       expect(requestCreateMock.calls[0][1]).toBe('POST')
       expect(requestCreateMock.calls[0][2]).toBe(policy)
 
@@ -187,7 +187,7 @@ describe('RNS3.put', () => {
 
       const requestCreateMock = Request.create.mock
       expect(requestCreateMock.calls.length).toBe(1)
-      expect(requestCreateMock.calls[0][0]).toBe('https://my-s3-bucket.s3.amazonaws.com')
+      expect(requestCreateMock.calls[0][0]).toBe('https://my-s3-bucket.s3-us-east-1.amazonaws.com')
       expect(requestCreateMock.calls[0][1]).toBe('POST')
       expect(requestCreateMock.calls[0][2]).toBe(policy)
 
